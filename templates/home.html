@@ -1,0 +1,187 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js" crossorigin="anonymous"></script>
+      
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="dashboard.css">
+       
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
+  </head>
+  <body>
+    <aside class="sidebar position-fixed top-0 left-0 overflow-auto h-100 float-left" id="show-side-navigation1">
+  <i class="uil-bars close-aside d-md-none d-lg-none" data-close="show-side-navigation1"></i>
+  <div class="sidebar-header d-flex justify-content-center align-items-center px-3 py-4">
+   <img
+         class="rounded-pill img-fluid"
+         width="65"
+         onerror='src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"' src="<%=user.avatar%>"
+         alt="">
+    <div class="ms-2">
+      <h5 class="fs-6 mb-0">
+        <a class="text-decoration-none" href="#"> <%=user.name%> </a>
+      </h5>
+      <p class="mt-1 mb-0"><%=user.usertype%></p>
+    </div>
+  </div>
+
+  <div class="search position-relative text-center px-4 py-3 mt-2">
+  <small style= "color: whitesmoke">Double click/tap menu items</small>
+    <i class="fa fa-search position-absolute d-block fs-6"></i>
+  </div>
+
+  <ul class="categories list-unstyled">
+    <li class="has-dropdown">
+      <i class="uil-estate fa-fw"></i><a href="#"> Projects</a>
+      <ul class="sidebar-dropdown list-unstyled">
+        <li><a href="/request">Create a project</a></li>
+        <li><a href="/manage">Manage projects</a></li>
+      </ul>
+    </li>
+   
+    <li class="has-dropdown">
+      <i class="uil-setting"></i><a href="#"> Settings</a>
+      <ul class="sidebar-dropdown list-unstyled">
+        <li><a href="/customeraccount">Update Profile</a></li>
+        <li><a href="/customerbilling">Payment Options</a></li>
+      </ul>
+    </li>
+    <li class="">
+      <i class="uil-envelope-download fa-fw"></i><a href="/inbox"> Mailbox</a>
+    </li>
+    <li class="">
+      <i class="uil-emoji"></i><a href="/logout"> Logout</a>
+    </li>
+  </ul>
+</aside>
+
+<section id="wrapper">
+  <nav class="navbar navbar-expand-md">
+    <div class="container-fluid mx-2">
+      <div class="navbar-header">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggle-navbar" aria-controls="toggle-navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="uil-bars text-white"></i>
+        </button>
+        <a class="navbar-brand" href="#"><img class="logo" src="/images/MdgLogoAlpha.png"/></a>
+      </div>
+      <div class="collapse navbar-collapse" id="toggle-navbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Settings
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="/customeraccount">My account</a>
+              </li>
+              <li><a class="dropdown-item" href="/inbox">My inbox</a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/logout">Log out</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/inbox"><i class="uil-comments-alt"></i><span id="notif"><%=notifications.length%></span></a>
+          </li>
+       
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i data-show="show-side-navigation1" class="uil-bars show-side-btn"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="p-4">
+    <div class="welcome">
+      <div class="content rounded-3 p-3">
+        <h1 class="fs-3">Dashboard</h1>
+      </div>
+    </div>
+  </div>
+    <section class="statistics mt-4">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="box d-flex rounded-2 align-items-center mb-4 mb-lg-0 p-3">
+         <a style="text-decoration: none; color: inherit; background-color: transparent" href="/manage">   <i class="uil-file fs-2 text-center bg-danger rounded-circle"></i></a>
+            <div class="ms-3">
+              <div class="d-flex align-items-center">
+                <h3 class="mb-0"><%=request.length%></h3> <span class="d-block ms-2">Projects</span>
+              </div>
+              </a><p class="fs-normal mb-0"><a style="text-decoration: none; background-color: transparent; color: whitesmoke"; href="/manage">Manage Current Projects</a></p>
+            </div>
+          </div>
+        </div>
+     <div class="col-lg-4">
+          <div class="box d-flex rounded-2 align-items-center mb-4 mb-lg-0 p-3">
+         <a style="text-decoration: none; color: inherit; background-color: transparent" href="/request">   <i class="uil-create-dashboard fs-2 text-center bg-danger rounded-circle"></i></a>
+            <div class="ms-3">
+              <div class="d-flex align-items-center"><h3 class="mb-0"> CREATE </h3>
+                <span class="d-block ms-2">You can request a new project</span>
+              </div>
+              </a><p class="fs-normal mb-0"><a style="text-decoration: none; background-color: transparent; color: whitesmoke"; href="/request">Let's get started</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="statis mt-4 text-center">
+      <div class="row">
+        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <div class="box bg-primary p-3">
+        
+            <h3 id="web">0</h3>
+            <p class="lead">Websites</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <div class="box bg-secondary p-3">
+         
+            <h3 id="webapp">0</h3>
+            <p class="lead">Web Apps</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+          <div class="box bg-danger p-3">
+        
+            <h3 id="mobile">0</h3>
+            <p class="lead">Mobile Apps</p>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    <script>
+      // Other important pens.
+// Map: https://codepen.io/themustafaomar/pen/ZEGJeZq
+// Navbar: https://codepen.io/themustafaomar/pen/VKbQyZ
+
+'use strict'
+var a= '<%= user%>';
+var projects = '<%= request%>';
+var projectdata= JSON.parse(<%-JSON.stringify(data)%>);
+var notifications= '<%- notifications%>';
+var opn= false;
+
+
+projectdata.forEach(countType);
+notifications.forEach(countRead);
+      
+    </script>
+      <script type="text/javascript" src= "notifications.js">
+        </script>
+
+  <script type="text/javascript" src= "countproject.js">
+    </script>
+  <script type="text/javascript" src= "selector.js">
+     </script>
+
+  </body>
+</html>

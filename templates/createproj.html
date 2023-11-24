@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="home.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <title>Create A New Project</title>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js" crossorigin="anonymous"></script>
+      
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="dashboard.css">
+       <link rel="stylesheet" type="text/css" href="project.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
+  </head>
+  <body>
+    <!-- NAV BAR For Logged in pages will be different, to include dashboard navigation -->
+    <nav class="navbar navbar-expand-md">
+    <div class="container-fluid mx-2">
+      <div class="navbar-header">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggle-navbar" aria-controls="toggle-navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="uil-bars text-white"></i>
+        </button>
+        <a class="navbar-brand" href="#"><img class="logo" src="/images/MdgLogoAlpha.png"/></a>
+      </div>
+      <div class="collapse navbar-collapse" id="toggle-navbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Settings
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="/customeraccount">My account</a>
+              </li>
+              <li><a class="dropdown-item" href="/inbox">My inbox</a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/logout">Log out</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/inbox"><i class="uil-comments-alt"></i><span>0</span></a>
+          </li>
+       
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i data-show="show-side-navigation1" class="uil-bars show-side-btn"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <aside class="sidebar position-fixed top-0 left-0 overflow-auto h-100 float-left" id="show-side-navigation1">
+  <i class="uil-bars close-aside d-md-none d-lg-none" data-close="show-side-navigation1"></i>
+  <div class="sidebar-header d-flex justify-content-center align-items-center px-3 py-4">
+    <img
+         class="rounded-pill img-fluid"
+         width="65"
+         src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+         alt="">
+    <div class="ms-2">
+      <h5 class="fs-6 mb-0">
+        <a class="text-decoration-none" href="#"> <%=user.name%> </a>
+      </h5>
+      <p class="mt-1 mb-0">Customer</p>
+    </div>
+  </div>
+
+  <div class="search position-relative text-center px-4 py-3 mt-2">
+
+    <small style= "color: whitesmoke">Double click/tap menu items</small>
+    <i class="fa fa-search position-absolute d-block fs-6"></i>
+  </div>
+
+  <ul class="categories list-unstyled">
+    <li class="has-dropdown">
+      <i class="uil-estate fa-fw"></i><a href="#"> Projects</a>
+      <ul class="sidebar-dropdown list-unstyled">
+        <li><a href="/request">Create a project</a></li>
+        <li><a href="/manage">Manage projects</a></li>
+      </ul>
+    </li>
+   
+    <li class="has-dropdown">
+      <i class="uil-setting"></i><a href="#"> Settings</a>
+      <ul class="sidebar-dropdown list-unstyled">
+        <li><a href="/customeraccount">Update Profile</a></li>
+        <li><a href="/customerbilling">Payment Options</a></li>
+      </ul>
+    </li>
+    <li class="">
+      <i class="uil-envelope-download fa-fw"></i><a href="/inbox"> Mailbox</a>
+    </li>
+    
+  </ul>
+</aside>
+    
+      </div>
+    </section>
+    <script>
+      // Other important pens.
+// Map: https://codepen.io/themustafaomar/pen/ZEGJeZq
+// Navbar: https://codepen.io/themustafaomar/pen/VKbQyZ
+
+'use strict'
+var a= '<%= user%>';
+var opn= false;
+
+    </script>
+
+    <script type="text/javascript" src= "selector.js">
+       </script>
+    
+    <div class="containera">
+
+      <div class="package mid left">
+            <h1>Websites</h1>
+          <h5>Packages start at $150+ tax</h5>
+        <small>Static/Dynamic Web served pages</small>
+           <br>
+        <a href="/form1"><button class="btn btn-dark">Start Website Request</button></a>
+          <br> <br> <br>
+        <h6>Static websites can be delivered fairly quickly and do
+        not require a backend sever. Dynamic websites such as sites
+        needing web forms, search forms, etc require a server and will not
+        work on some web hosting sites.</h6>
+      </div>
+      <div class="package mid middle">
+            <h1>Web Applications</h1>
+          <h5>Packages start at $350+ tax</h5>
+        <small>Complex web served applications</small>
+        <br>
+        <a href="/form2"> <button class="btn btn-dark">Start Web App Request</button></a>
+         <br> <br> <br>
+        <h6>Web apps are more complex web served applications. Popular examples include login/registration portals requiring database connectivity and live data management or web pages requiring Google or Facebook API's.</h6>
+      </div>
+
+      <div class="package mid right">
+            <h1>Mobile Applications</h1>
+          <h5>Packages start at $500+ tax</h5>
+        <small>Simple mobile applications</small>
+           <br>
+        <a href="/form3"> <button class="btn btn-dark">Start Mobile App Request</button></a>
+         <br> <br> <br>
+        <h6>Simple Android or IOS apps, due to the scope of
+        many applications, mobile apps can take the longest for delivery due to testing on multiple platforms.</h6>
+      </div>
+    </div>
+   
+    
+  </body>
+</html>

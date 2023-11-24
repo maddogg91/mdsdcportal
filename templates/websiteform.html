@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel= "stylesheet" type= "text/css" href="form.css">
+      <link rel="stylesheet" type="text/css" href="home.css">
+  
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <title>Website Request Form</title>
+  </head>
+  <body>
+
+   
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <div class="form">
+	<h2 style="text-align: center">Website Request Form</h2>
+    
+      <h6 style="text-align: center">See the Quoted Total below, you will receive a full quote once you select start project from your manage project portal</h6><br>
+      <h4 style="text-align: center">Current Subtotal:</h4><h5 style="text-align: center" id="price">$150</h5><h6 style="text-align: center; color: brown;">Does not include taxes</h6>
+      <br><br>
+	<p>Please fill out forms with as much detail as possible!</p>
+	<p>Maddogg Software relies on user input during the request
+  process to tailor software to meet your satisfaction.</p>
+
+	<input class="stg" id="one" type="radio" name="stage" checked="checked" />
+	<input class="stg" id="two" type="radio" name="stage" />
+	<input class="stg" id="three" type="radio" name="stage" />
+	<input class="stg" id="four" type="radio" name="stage" />
+	<input class="stg" id="five" type="radio" name="stage" />
+	<input onclick="enable()" class="stg" id="six" type="radio" name="stage" />
+
+	<div class="stages">
+		<label for="one">1</label>
+		<label for="two">2</label>
+		<label for="three">3</label>
+		<label for="four">4</label>
+		<label for="five">5</label>
+		<label for="six">6</label>
+	</div>
+
+	<span class="progress"><span></span></span>
+
+	<div class="panels">
+		<div data-panel="one">
+			<h4>Basic Information</h4>
+      <label for="business">Business Name</label>
+			<input id="business" type="text" placeholder="EX: Maddogg Software" />
+       <label for="industry">Industry</label>
+      <input id="industry" type="text" placeholder="EX: Tech, Healthcare, Social Media" />
+       <label for="need">How will you be using your website?</label>
+      <select id="need" name="need">
+        <option value="marketing">Marketing</option>
+       <option value="commerce">E-commerce</option>
+       <option value="other">Other</option>
+      </select>
+      <br>
+      <textarea id="desc" name="desc" rows="10" cols="30" placeholder="If Other please elaborate"></textarea>
+		</div>
+		<div data-panel="two">
+			<h4>Website Info</h4>
+     
+      <label for="domain">Do you have a registered domain name?</label>
+      <form action= "/action_page.php">
+      <small>Your own website name, ex: </small><br><br>
+			<input type="radio" onclick="alertwebsitename('stg2y', 1)" class="stg2" id="stg2y" name="stg2"/>
+          <label for="stg2y">Yes</label><br>
+      <input id="stg2n" class="stg2" type="radio" onclick="alertwebsitename('stg2n', 2)" name="stg2" />
+     <label for="stg2n">No</label><br>
+      <input id="stg2w" class="stg2" type="radio" onclick="alertinfo()" name="stg2" />
+      <label for="stg2w">Not Sure?</label><br>
+		</div>
+    </form>
+		<div data-panel="three">
+			<h4>Website Type</h4>
+      <label>We offer static and dynamic websites, for more information on the type of website, hover over the options below to receive a prompt to explain.</label>
+      <br><br>
+      <label class="show" style= "color:green" title="Static Websites are simple websites with no coding, meaning the pages do not need to have information changing or flowing throughout. Static Websites take less time to deliver. Examples: Resume Websites, Wedding Websites with pictures and information for guest, Restaurants with menus for customers. Click Static Website to see an example.">Static Website- Starts at $150 + tax</label><br><br>
+      <label class="show" style= "color:green" title="Dynamic Websties are more complex websites requiring coding. Due to the nature of dynamic websites the delivery time may be extended by a week or two depending on the package. Examples: Simple search websites, websites requiring login or registration, image hosting websites. For an example of a Dynamic Website click Dynamic Website">Dynamic Website- Starts at $250 + tax</label>
+      <br><br>
+			 <select onchange="if(this.selectedIndex) changeprice(this.selectedIndex)" id="webtype" name="webtype">
+         <option value="-1">--</option>
+        <option value="1">Static</option>
+       <option  value="2">Dynamic</option>
+      </select>
+		</div>
+		<div data-panel="four">
+			<h4>Packages</h4>
+      <label id="pack">The Basic Package includes a landing page (home page), and three web pages of your choosing (ex: Contact Us, Media Page, Menu, etc.</label>
+      <small>Change the option below to see package information</small>
+      <br>
+				 <select onchange="if(this.selectedIndex)
+           changepackage(this.selectedIndex)" id="packagetype" name="packagetype">
+         <option value="-1">--</option>
+        <option value="1">Basic</option>
+       <option  value="2">Plus</option>
+        <option value="3">Premium</option>
+         </select>
+    </div>
+    <br><br>
+		<div data-panel="five">
+			<h4>What is your preferred method of contact?</h4>
+      <select id= "contacttype">
+      <option value="">--</option>
+        <option value="Phone">Phone Call</option>
+       <option  value="Email">Email</option>
+        <option value="Text">Text</option>
+        </select>
+      <input type="text" id= "ctc" placeholder="Phone Number/Email"/>
+
+		</div>
+		<div data-panel="six">
+			<h4>Additional Comments and Concerns</h4>
+			<input id="comment" type="text" placeholder="Comment" />
+		</div>
+	</div>
+
+	<button onclick="checkCompletion()" disabled= "true" id="submit" class="submit">Submit</button>
+
+</div>
+ <script>
+   var step = false; 
+  var button= document.getElementById("submit");
+   var website= "";
+   var fields= ["business","industry"];
+   var radios= ["stg2y", "stg2n", "stg2w"];
+   var selections= ["webtype", "packagetype", "contacttype"];
+   var optional= ["need", "desc"];
+   var stg3price= 150;
+   var stg4price= 0;
+   var stg5price= 0;
+   var pagecount= 0;
+   var updates= 0;
+   function alertinfo() {
+     alert(" Here's a quick explaination: A domain name is the address of your website that internet users type in the browser URL bar to visit your website. In simple terms, if your website was a house, then your domain name would be its address. For example the current address is maddoggsoftware.com")
+   }
+   function alertwebsitename(stage, num) {
+  let text;
+  let a;
+  if (num==1){
+    a = "Please enter your website name. Once your website is complete instructions will be given to complete website verification process."
+  }
+  if (num==2){
+   a= "You have a few options, you can purchase a website domain through a third party; we can search for a few domain names if your first, second, or third choice isn't available; If you wish for us to look for the domain name, enter a few options including .com, .org, .info and we will return the domain price in the quote." 
+  
+  }
+  let answer = prompt(a);
+      st= document.getElementById(stage);
+  if (answer == null || answer == "") {
+    text = "User cancelled the prompt.";
+     st.checked= false;
+    if(stage=== "stg2y"){
+     
+      st.value= "on";
+      return;
+    }
+  } else {
+    "Thank you for your response!"
+  }
+  website= answer;
+  document.getElementById(stage).value = answer;
+}
+   function changeprice(x) {
+     if(x== 1){
+       stg3price= 150;
+       
+     }
+     else if(x== 2){
+       stg3price= 250;
+     }
+     pr=  stg3price + stg4price + stg5price;
+     document.getElementById("price").innerHTML= "$" + pr;
+     
+   }
+   function changepackage(x) {
+     var text;
+     if(x==1){
+       stg4price= 0;
+       pagecount= 3;
+    
+       text= "The Basic Package includes a landing page (home page), and three web pages of your choosing (ex: Contact Us, Media Page, Menu, etc. Additional Updates can be purchased on manage project portal."
+     }
+     if(x==2){
+       stg4price= 150;
+       pagecount= 5;
+       updates= 1;
+       text= "The Plus Package includes a landing page (home page), and five web pages of your choosing (ex: Contact Us, Media Page, Menu, etc. And 1 free lifetime update on your pages. Lifetime updates can be requested through manage projects portal. Plus Package starts at $300+ excluding taxes and other additions (Dynamic website, additional pages, etc). Additional Updates can be purchased on manage project portal."
+     }
+     if(x==3){
+       stg4price= 300;
+       pagecount= 8;
+       updates= 3;
+       text="The Premium Package includes a landing page (home page), and 8 web pages of your choosing (ex: Contact Us, Media Page, Menu, etc. And 3 free lifetime updates on your pages. Lifetime updates can be requested through manage projects portal. Premium Package starts at $450+ excluding taxes and other additions (Dynamic website, additional pages, etc). Additional pages/Updates can be purchased on manage project portal."
+     }
+     pr= stg3price + stg4price + stg5price;
+     document.getElementById("price").innerHTML= "$" + pr;
+     document.getElementById("pack").innerHTML= text;
+   }
+   function checkCompletion(){
+   
+     fields.forEach(check);
+     console.log(document.getElementById(radios[0]).value)
+   if(document.getElementById(radios[0]).value === "on" && document.getElementById(radios[1]).value === "on" && document.getElementById(radios[2]).value === "on"){
+       alert("On page 2, please select yes or no, and add a domain name.")
+       step= false;
+     }
+
+     selections.forEach(check2);
+     console.log(step);
+
+     if(!step){
+       button.disabled="true";
+      
+     }
+     else{
+      console.log(step);
+     submitForm();
+     }
+   
+  
+   }
+
+    function submitForm(){
+      alert("Thank you for completing the website request form, You will be moved to the manage portal in a few moments.");
+      let data = {
+        businessname: document.getElementById("business").value,
+        need: document.getElementById("need").value,
+        industry: document.getElementById("industry").value,
+        desc: document.getElementById("desc").value,
+        website: website,
+        type: document.getElementById("webtype").value,
+        package: document.getElementById("packagetype").value,
+        contact: document.getElementById("contacttype").value,
+        info: document.getElementById("ctc").value,
+        comment: document.getElementById("comment").value,
+        total: stg3price + stg4price + stg5price
+    }
+       let options = {
+        method: 'POST',
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify(data)
+    }
+      const promise = fetch('/websiterequest', options);
+    promise.then(response => {
+        if(!response.ok){
+            console.error(response)
+        } 
+    }).then(result => {
+        window.location.href="/manage"
+    })
+  }
+        
+      
+      
+    
+   
+   
+   function check(item, index){
+
+     if(document.getElementById(item).value===""){
+       alert("Field " + item + " is missing information, please check previous pages");
+       step= false;
+     }
+     else{
+         step= true;
+     }
+   
+   }
+    function check2(item, index){
+     if(document.getElementById(item).value==="-1"){
+       alert(item + " is missing information, please check previous pages");
+       step= false;
+     }
+      else{
+         step= true;
+      }
+    
+   }
+   function enable(){
+
+     button.disabled= false;
+     
+   
+   }
+ </script>
+  </body>
+</html>

@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css?family=Belanosima&display=swap');
+body{
+background: rgb(195,124,27);
+background: radial-gradient(circle, rgba(195,124,27,.7) 0%, rgba(40,3,3,.7) 100%);
+}
+
+.left-pane{
+  
+  position: absolute;
+  left: 0;
+  width: 25%;
+  height: 95%;
+}
+.center{
+  float: center;
+  position: absolute;
+  left: 25%;
+  width: 50%;
+  height: 95%;
+ 
+}
+.cb{
+  float: center;
+  position: absolute;
+  border-radius: 6px;
+ padding: 15px 32px;
+  background-color: ghostwhite;
+  color: black;
+   font-family: Belanosima;
+  box-shadow: 5px 10px 2px  rgb(195,124,27);
+  text-shadow: 2px 2px 2px rgb(195,124,27, .5);
+  left: 35%;
+  top: 75%;
+}
+.logo{
+  position: relative;
+  left: -200px;
+  width: 5%;
+  height: 5%;
+}
+.copyright{
+  position: relative;
+  left: -100px;
+}
+.home-img{
+  width: 30%;
+  height: 30%;
+  position: absolute;
+  left: 33%;
+  
+}
+.right-pane{
+  position: absolute;
+  right: 0;
+  width: 25%;
+  height: 95%;
+}
+.footer{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: -10%;
+  background-color: red;
+}
+
+
+.home-text{
+  color: ghostwhite;
+  text-align: center;
+  font-family: Belanosima;
+  padding-top: 10%;
+  font-size: 48px;
+  letter-spacing: -1px;
+  word-spacing: -5px;
+  text-shadow: 2px 2px 2px black;
+}
+
+.home-text-body{
+  color: ghostwhite;
+  text-align: center;
+  font-family: Belanosima;
+  padding-top: 25%;
+  font-size: 24px;
+  text-shadow: 2px 2px 2px black;
+}
+
+.ad{
+  position: absolute;
+  background-color: black;
+  opacity: .7;
+  color: white;
+  font-family: Belanosima;
+  text-shadow: 2px 2px 2px slateblue;
+  top: 50%;
+  left: 2%;
+  width:100%;
+  height: 40%;
+  text-align: center;
+  font-weight: bolder;
+  box-shadow: 5px 10px 2px  rgb(195,124,27);
+}
+.long{
+  height: 90%;
+}
+.top{ 
+  position: absolute;
+  top: 5%;
+ 
+}
+.ad-img{
+  width: 100%;
+  opacity: .9;
+}
+
+.ad-img:hover {
+  -ms-transform: scale(1.2); /* IE 9 */
+  -webkit-transform: scale(1.2); /* Safari 3-8 */
+  transform: scale(1.2); 
+}
+
+#bg 
+{	
+
+
+
+}
+
+@media only screen and (min-width: 1920px) {
+  .cb{
+    left: 40%;
+  }
+  .home-text-body{
+  padding-top: 40%;
+  }
+  .logo{
+  position: relative;
+  left: -400px;
+}
+  .copyright{
+  left: -270px;
+}
+}
+
+@media only screen and (min-width: 1370px) and (max-width: 1605px) {
+ .home-text-body{
+    padding-top: 40%;
+   font-size: 28px;
+  }
+}
+
+@media only screen and (min-width: 1080px) and (max-width: 1370px) {
+
+}
+
+@media only screen and (min-width: 720px) and (max-width: 1080px) {
+   .home-text{
+    font-size: 28px;
+    word-spacing: normal;
+  }
+  .home-text-body{
+    font-size: 10px;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 720px) {
+   .home-text{
+    font-size: 28px;
+   
+  }
+ 
+  .home-text-body{
+    font-size: 10px;
+  }
+}
+
+
+
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .logo{
+    left: -99px;
+  }
+  .copyright{
+    left: 0px;
+  }
+  .home-text{
+    font-size: 28px;
+    word-spacing: normal;
+     letter-spacing: normal;
+  }
+  .home-text-body{
+    font-size: 18px;
+    padding-top: 90%;
+  }
+  .cb{
+    top: 65%;
+    left: 12%;
+  }
+  .ad{
+    top: 15%;
+    height: 20%;
+     font-size: 8px;
+  }
+  .top{
+    top: 55%;
+  }
+  .ad-img{
+    height: 75%;
+  }
+  .ad h5{
+    font-size: 10px;
+  }
+  .home-img{
+   width: 45%;
+  height: 25%;
+  }
+}
+
+@media only screen and (min-width: 50px) and (max-width: 320px) {
+   .home-text{
+    font-size: 28px;
+     word-spacing: normal;
+     letter-spacing: normal;
+  }
+  .home-text-body{
+    font-size: 10px;
+  }
+}

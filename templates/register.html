@@ -1,0 +1,163 @@
+<html>
+  <head>
+     <link rel="stylesheet" type="text/css" href="register.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <title>Customer Registration</title>
+  </head>
+  <body>
+    <href><i class="fa fa-arrow-left" aria-hidden="true"></i></href>
+    <div class="step-bar">
+    <ul>
+        <li>
+            <div class="number active">1</div>
+            <div class="text">account setup</div>
+        </li>
+        <li>
+            <div class="number">2</div>
+            <div class="text">profiles</div>
+            <div class="line"></div>
+        </li>
+        <li>
+            <div class="number">3</div>
+            <div class="text">details</div>
+            <div class="line"></div>
+        </li>
+    </ul>
+</div>
+<h1>Create new account</h1>
+<form action="/register" method="post">
+    <div class="account-setup register-form">
+        <h2>Step 1</h2><input name="email" type="email" placeholder="Email" id="email" required />
+      <label>Password must be at least six chars, with at least one number & special char</label>
+      <input name="password" type="password" id="password" placeholder="Password" required /><input name="confirmPassword" type="password" id="cp" placeholder="Confirm Password" required />
+        <div class="button firstNext">Next</div>
+    </div>
+    <div class="user-details register-form">
+        <h2>Step 2</h2><input name="name" id="name" type="text" placeholder="Full name" required /><input name="country" type="text" id="country" placeholder="Country" required/>
+      <input name= "phone" type="phone" id="phone" placeholder="Phone Number" required />
+        <div class="button firstPrev">Back</div>
+        <div class="button secondNext">Next</div>
+    </div>
+    <div class="finish-step register-form">
+        <h2>Step 3</h2><label for="birth-day">Birth date</label><input class="error" id="birthday" name="bday" type="date" required/>
+        <div class="button secondPrev">Back</div>
+        <button type="submit" class="button register" >Register</button>
+    </div>
+</form>
+     <script>
+     
+      let steps = $('.step-bar ul li');
+
+// First step
+$('.firstNext').on('click', (e) => {
+  email= document.getElementById("email").value;
+  if(!IsEmail(email))
+  {
+    alert("Email Account is invalid");
+    return;
+  }
+  password= document.getElementById("password").value;
+  cp = document.getElementById("cp").value;
+  if(email==='' || password=== '' || cp === ''){
+    alert("Missing required information")
+    return;
+  }
+  if(password != cp){
+    alert("Password and Confirm Password does not match");
+    return;
+  }
+
+   if(!checkPasswordStrength(password)){
+    alert("Password did not meet strength of password requirements");
+    return;
+  }
+  
+  setTimeout(() => {
+     $(steps[1]).find('.number').addClass('active');
+   }, 1000);
+  
+   $(steps[1]).find('.line').addClass('line-active');
+   $('.account-setup').css('left', '-4000px');
+   $('.user-details').css('left', 'calc(50% - 175px)');
+   $('.user-details').css('display', 'inline-block');
+});
+
+// Second step
+$('.secondNext').on('click', (e) => {
+  country= document.getElementById("country").value;
+  name = document.getElementById("name").value;
+  if(country=== '' || name === ''){
+    alert("Missing required information")
+    return;
+  }
+  setTimeout(() => {
+    $(steps[2]).find('.number').addClass('active');
+  }, 1000);
+  
+  $(steps[2]).find('.line').addClass('line-active');
+  $('.user-details').css('left', '-4000px');
+  $('.finish-step').css('left', 'calc(50% - 175px)');
+  $('.finish-step').css('display', 'inline-block');
+  
+});
+
+$('.firstPrev').on('click', (e) => {
+  $(steps[1]).find('.number').removeClass('active');
+  $(steps[1]).find('.line').removeClass('line-active');
+  $('.user-details').css('left', '4000px');
+  $('.account-setup').css('left', 'calc(50% - 175px)');
+});
+
+// Last step
+$('.secondPrev').on('click', (e) => {
+  $(steps[2]).find('.number').removeClass('active');
+  $(steps[2]).find('.line').removeClass('line-active');
+  $('.finish-step').css('left', '4000px');
+  $('.user-details').css('left', 'calc(50% - 175px)')
+});
+
+
+
+function validateForm(field) {
+    var valid = false;
+    $(field).each(function () {
+        if ($(this).val() === '') {
+            valid = false;
+            return false;
+        }
+    });
+    return valid
+}
+
+  function checkPasswordStrength(password) {
+	var number = /([0-9])/;
+	var alphabets = /([a-zA-Z])/;
+	var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+	if (password.length < 6) {
+	   alert("Password needs to be at least six characters");
+    return false;
+	} else {
+		if (password.match(number) && password.match(alphabets) && password.match(special_characters)) {
+			return true;
+		}
+		else {
+      alert("Password missing 1 special character or number")
+			return false;
+		}
+	}
+}
+
+        function IsEmail(email) {
+            var regex =
+/^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!regex.test(email)) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,206 @@
+.containera{
+
+ width: 90%;
+  height: 90%;
+ 
+  position: absolute;
+
+  left: 10%;
+}
+
+.package{
+  width: 23%;
+  height: 50%;
+ background-color: #6f6486;
+  box-shadow: 8px 2px 5px  black;
+  text-align: center;
+  color:whitesmoke;
+  text-shadow: 1px 1px 2px black;
+}
+
+.package h1{
+  position: relative;
+ 
+}
+
+.package h5{
+  position: relative;
+
+}
+.package h6{
+  position: relative;
+  left: 20%;
+   word-wrap: break-word;
+  width: 250px;
+  height: 100px;
+  color: ghostwhite;
+}
+
+.mid{
+   position: absolute;
+    top: 40%;
+}
+
+.middle{
+  position: absolute;
+  left: 35%;
+}
+.left{
+  position: absolute;
+  left: 8%;
+}
+.right{
+  position: absolute;
+  right: 14%;
+}
+
+
+@media only screen and (min-width: 1370px) and (max-width: 1605px) {
+ 
+}
+
+
+@media only screen and (min-width: 1080px) and (max-width: 1370px) {
+  .left{
+    left: 15%;
+  }
+  .middle{
+    left: 44%;
+  }
+  .right{
+    right: 5%;
+  }
+  .package h1{
+    font-size: 24px;
+  }
+  .package h5{
+    font-size: 18px;
+  }
+  .package h6{
+    font-size: 12px;
+    left: 0%;
+    width: 230px;
+  }
+}
+
+@media only screen and (min-width: 720px) and (max-width: 1080px) {
+  .left{
+    left: 15%;
+  }
+  .middle{
+    left: 44%;
+  }
+  .right{
+    right: 5%;
+  }
+  .package h1{
+    font-size: 24px;
+  }
+  .package h5{
+    font-size: 18px;
+  }
+  .package h6{
+    font-size: 12px;
+    left: 0%;
+    width: 230px;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 720px) {
+  .containera{
+    width: 100%;
+  }
+  .package{
+    width: 300px;
+    position: absolute;
+    height: 300px;
+  }
+  .left{
+    top: 5%;
+    left: 14%;
+  }
+  .middle{
+    top: 42%;
+    left: 14%;
+  }
+  .right{
+    top: 80%;
+    left: 14%;
+  }
+  .package h1{
+    font-size: 24px;
+  }
+  .package h5{
+    font-size: 18px;
+  }
+  .package h6{
+    font-size: 12px;
+    left: 4%;
+    width: 280px;
+    text-align: center;
+  }
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .package{
+     width: 300px;
+      position: absolute;
+      height: 300px;
+  }
+  .left{
+    top: 3%;
+    left: 14%;
+  }
+  .middle{
+    top: 52%;
+    left: 14%;
+  }
+  .right{
+    top: 100%;
+    left: 14%;
+  }
+  .package h1{
+    font-size: 24px;
+  }
+  .package h5{
+    font-size: 18px;
+  }
+  .package h6{
+    font-size: 14px;
+    left: 8%;
+    width: 230px;
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 50px) and (max-width: 320px) {
+  .package{
+     width: 300px;
+      position: absolute;
+      height: 300px;
+  }
+  .left{
+    top: 3%;
+    left: 14%;
+  }
+  .middle{
+    top: 52%;
+    left: 14%;
+  }
+  .right{
+    top: 100%;
+    left: 14%;
+  }
+  .package h1{
+    font-size: 24px;
+  }
+  .package h5{
+    font-size: 18px;
+  }
+  .package h6{
+    font-size: 14px;
+    left: 8%;
+    width: 230px;
+    text-align: center;
+  }
+}

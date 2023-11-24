@@ -1,0 +1,87 @@
+<html>
+<head>
+  <style>
+    #checkboxes label {
+      float: left;
+    }
+    #checkboxes ul {
+      margin: 0;
+      list-style: none;
+      float: left;
+    }
+  </style>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+
+  
+</body>
+  <h2 style="text-align:center">Archived</h2>
+  <div id="checkboxes">
+   
+    <ul>
+       <% for (var x in data) { %>
+         <% if (type=== 'notification' ) { %>
+           <li style="font-size: 18px"><input id= "checkbox" type="checkbox" value='<%= data[x]._id %>'> <%= new Date(Date.parse(data[x].date)).toLocaleString() %> 
+             <br> <b>Sent From: </b> <%= data[x].notification.request.user.email %>
+             <br><b> <%= data[x].header %>:</b>
+            <br><%= data[x].notification.update %></li>
+           <% } %>
+             
+             <% if (type=== 'project' ) { %>
+
+              <% } %>
+  
+     
+          <% } %>
+    </ul>
+  </div>
+  <button onclick="restore()" style="position: absolute;  bottom: 0px; left:0px; right: 0px; width:200px; height:50px; color:tan; background-color: black">Restore Selected</button>
+            
+<script>
+  var data= '<%- data%>';
+  const marked= [];
+  const type= '<%- type %>';
+  
+ 
+  $("input[type='checkbox']").change(function() {
+      if(this.checked) {
+          marked.push(this.value);
+        
+      }
+      if(!this.checked){
+        const index= marked.indexOf(this.value);
+        
+        delete marked[index];
+      }
+    
+  });
+
+  function restore(){
+    let body= {
+      type: type,
+      data: marked
+    }
+    let options = {
+        method: 'POST',
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify(marked)
+    }
+      const promise = fetch('/restore', body);
+    promise.then(response => {
+        if(!response.ok){
+            console.error(response)
+        } 
+      close()
+    }).then(result => {
+
+      
+    })
+  }
+  
+</script>
+
+</html>
+
