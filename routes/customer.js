@@ -124,12 +124,62 @@ module.exports = function(app, path, db){
   }      
   app.get('/form1', function(req,res){
     if(req.session.user){
-      res.render(path.join(__dirname, 'templates/websiteform.html'), {'user': req.session.user})
+      res.render(path.join(__dirname, '../templates/websiteform.html'), {'user': req.session.user})
     }
     else{
       res.redirect('/')
     }
   })
 
+  app.post('/resend',async function(req,res, next){
+    const body= req.body;
+    const send= await db.resendVerification(body);
+    if(send){
+      res.redirect(307, '/verify');
+      next();
+    }
+    else{
+      res.redirect(307, '/verify');
+      next()
+    }
+   
+  })
+
+  app.get('/forgot', function(req,res){
+    res.render(path.join(__dirname,'../templates/resetpassw.html'))
+  });
+  
+
+  app.post('/forgot', function(req,res, next){
+    const email= req.body.email;
+    db.createResetToken(email);
+    res.redirect('/');
+    next();
+  });
+
+  app.get('/reset', function(req,res){
+   const id= req.query.code;
+  
+    if (id== null) {
+      res.redirect('/')
+      return;
+    }
+    res.render(path.join(__dirname,'../templates/reset.html'),{code: id, al: ''});
+    
+  });
+
+  app.post('/reset', async function(req,res,next){
+    const body= req.body;
+
+    const request= await db.resetPassword(body);
+    if(!request){
+  res.render(path.join(__dirname,'../templates/reset.html'),{code: body.code, al: "Request either timed out or Email was invalid"});
+    }
+    else{
+      res.render(path.join(__dirname,'../templates/reset.html'),{code: body.code, al: "Password succesfully updated! Return to login page"});
+      next();
+     
+    }
+  })
 
 }

@@ -8,9 +8,11 @@ const db= require('./mongoinfo.js');
 const refresh= require('./refresh.js');
 const register= require('./routes/registration.js')(app, path, db);
 const login= require('./routes/login.js')(app,path,db);
-const google= require('./routes/google.js')(app, passport);
+const google= require('./routes/google.js')(app, passport, db);
 const customer= require('./routes/customer.js')(app, path, db);
-//const admin= require('./hidden/admin.js')(app, db, refresh, path);
+const admin= require('./hidden/admin.js')(app, db, refresh, path);
+var nodemailer = require('nodemailer');
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'templates/index.html'));

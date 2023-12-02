@@ -5,7 +5,7 @@ app.get('/register', function(req, res){
 
 app.post('/register', async function(req, res){
   const body= req.body;
-  reg= db.register(body.email,body.password, body.name, body.country, body.bday);
+  reg= db.register(body.email,body.password, body.name, body.country, body.bday, body.phone);
   if(reg!= false){
      res.render(path.join(__dirname, '../templates/verify.html'), {'user': reg});
   }

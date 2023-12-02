@@ -11,6 +11,9 @@ function postrequest(req, url){
       if(!response.ok){
           console.error(response)
       } 
+    if (response.redirected) {
+        window.location.href = response.url;
+    }
   }).then(result => {
 
 

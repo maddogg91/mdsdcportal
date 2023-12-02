@@ -211,7 +211,7 @@
   .floating-text {
     background-color: #001F61;
     border-radius: 10px 10px 0 0;
-    color: #fff;
+    color: white;
     font-family: 'Muli';
     padding: 7px 15px;
     position: fixed;
@@ -223,7 +223,7 @@
   }
 
   .floating-text a {
-    color: #FF7500;
+    color: whitesmoke;
     text-decoration: none;
   }
 
@@ -254,8 +254,12 @@
 
   </div>
 </div>
-
+<input id="email" class="floating-text" type="text" placeholder="Enter Email Address"></input>
+<button onclick="resend()" class= "floating-btn">Resend Verification Code</button>
 <script>
+
+  alert("Remember to check your email account for the verification code! You'll have 30 minutes to enter it. If you need a new code click send verfication button below.");
+  
   const codes = document.querySelectorAll('.code');
 
   var check= 0;
@@ -281,6 +285,7 @@
           }, 10);
           if(check === 5){
               postrequest(v, '/verify');
+             
           }
         } 
       }
@@ -296,6 +301,12 @@
    
     });
   });
+
+  function resend(){
+    const email = document.getElementById("email").value;
+    alert("Email sent to: " + email);
+    postrequest(email, '/resend');
+  }
 
 
 </script>

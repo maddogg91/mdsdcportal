@@ -1,6 +1,11 @@
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="google.css">
      <link rel="stylesheet" type="text/css" href="register.css">
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
     <title>Customer Registration</title>
@@ -25,7 +30,9 @@
         </li>
     </ul>
 </div>
-<h1>Create new account</h1>
+<h1>Create new account <br>  By signing up, you agree to our <a target="_blank" href="/terms">Terms of Service</a> and <a target="_blank" href="/privacy">Privacy Policy</a>.</h1>
+  
+    <br>
 <form action="/register" method="post">
     <div class="account-setup register-form">
         <h2>Step 1</h2><input name="email" type="email" placeholder="Email" id="email" required />
@@ -44,7 +51,17 @@
         <div class="button secondPrev">Back</div>
         <button type="submit" class="button register" >Register</button>
     </div>
+
+  
 </form>
+    
+    <button onclick= "window.location.href=
+      '/google'" type="button" class="login-with-google-btn" >
+      Sign Up with Google
+    </button>
+    <button onclick= "window.location.href='/login'" type="button" class="reglogin" >
+    Already Have an account? Click here
+    </button>
      <script>
      
       let steps = $('.step-bar ul li');

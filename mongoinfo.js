@@ -7,6 +7,7 @@ const pass= process.env['pass'];
 const url= 'mongodb+srv://'+user+':'+pass+'@cluster0.4grai.mongodb.net/';
 const client = new MongoClient(url);
 const multer  = require('multer');
+const emails= require('./config/email.js')
 
 
 client.connect();
@@ -19,7 +20,7 @@ const notifications= database.collection("notifications");
 const verifications= database.collection("verify")
 trashedNotification.createIndex({ date: 1 }, { expireAfterSeconds: 2592000 });
 archived.createIndex({ date: 1 }, { expireAfterSeconds: 2592000 });
-verifications.createIndex({ date: 1 }, { expireAfterSeconds: 2592000 });
+verifications.createIndex({ date: 1 }, { expireAfterSeconds: 1800});
 
 function enc(txt){
 
@@ -32,7 +33,7 @@ function dec(data){
   return originalText;
 }
 
-async function register(email,pass, name, country, bday){
+async function register(email,pass, name, country, bday, phone){
 	const new_user= {
 		email: email,
 		passw: enc(pass),
@@ -41,7 +42,7 @@ async function register(email,pass, name, country, bday){
     bday: bday,
     usertype: "customer",      url:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
 		joindate: new Date().toLocaleString(),
-    phone,
+    phone: phone,
     verified: false
 	}
 	const user= await users.findOne({email: new_user.email});
@@ -54,6 +55,7 @@ async function register(email,pass, name, country, bday){
       date: new Date().toLocaleString()
     }
     verifications.insertOne(ver);
+    emails.emailRegistrationCode(ver);
 		return user;
 	}
 	else{
@@ -263,26 +265,100 @@ function updateUserAvatar(path, user){
   var p= path.replace("public/","");
   users.updateOne({'_id': new ObjectID(user._id)}, {$set:{avatar: p}});
 }
+async function createResetToken(email){
+  const ver= {
+    _id: Math.floor(Math.random()*9000000) + 1000000,
+    email: email,
+    date: new Date()
+  }
+  verifications.insertOne(ver);
+  emails.resetPassword(ver);
+}
 
-async function verify(code, user){
+async function resetPassword(request){
+  const tmp= await verifications.findOne({'_id': parseInt(request.code)})
+  console.log(tmp);
+  if(tmp!= null){
+    users.updateOne({'email': tmp.email}, {$set:{passw: enc(request.password)}});
+    verifications.deleteOne({'_id': parseInt(request.code)});
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
+
+async function verify(code){
   var vfy= ''
   code.forEach((c) => {
     vfy= vfy + c
   });
-  console.log(vfy);
-  verifications.findOne({'_id': vfy}, function(err, obj) {
-    if (err) throw err;
-    if(obj.user._id == user._id){
-      users.updateOne({'_id': new ObjectID(user._id)}, {$set:{verified: true}});
+
+  const tmp= await verifications.findOne({'_id': parseInt(vfy)});
+
+  
+  if(tmp){
+    const user= await users.findOne({'email': tmp.email })
+   
+    users.updateOne({'_id': new ObjectID(user._id)}, {$set:{verified: true}});
+
+    verifications.deleteOne({'_id': tmp._id});
+    
+      return true;
     }
-    else{
-      console.log("invalid code");
-    }
-  })
-};
+  else{
+    return false;
+  }
+  }
 
 function makeFullPayment(id){
   requests.updateOne({'_id': new ObjectID(id)}, {$set: {balance: 0}});
 }
 
-module.exports = { register, login, loadRequest, createWebSiteRequest, updateRequest, notifyUpdate, loadNotifications, deleteProject, updateProfile, reset, updateUserAvatar, loadUser, loadArchived, updateNotification, deleteNotification, verify, makeFullPayment};
+async function resendVerification(email){
+  const user= await users.findOne({email: email});
+
+  if(user){
+    verifications.deleteOne({'email': email});
+    const verification= Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+      const body={
+        email: email,
+        code: verification,
+        date: new Date()
+      }
+      verifications.insertOne(body);
+      emails.emailRegistrationCode(body);
+    }
+  return user;
+  }
+
+async function googleAuth(googleUser){
+  const profile= googleUser._json;
+  const email= profile.email;
+  const name= profile.name;
+  const image= profile.picture;
+  const id= profile.sub;
+  const user= await users.findOne({email: email});
+  if(user){
+    return user;
+  }
+  else{
+    const body={
+      name: name,
+      email: email,
+      avatar: image,
+      id: id,
+      verified: true,
+      usertype: "customer",
+      date: new Date()
+    }
+    users.insertOne(body);
+    return body;
+  }
+}
+  
+  
+  
+
+module.exports = { register, login, loadRequest, createWebSiteRequest, updateRequest, notifyUpdate, loadNotifications, deleteProject, updateProfile, reset, updateUserAvatar, loadUser, loadArchived, updateNotification, deleteNotification, verify, makeFullPayment, resendVerification, createResetToken, resetPassword, googleAuth};

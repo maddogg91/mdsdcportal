@@ -16,7 +16,7 @@ var json= require('json');
 const cors=require("cors");
 var formidable = require('formidable');
 const http = require('http');
-
+const router = new require('express').Router()
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -45,7 +45,7 @@ function getApp(path, passport){
   app.use(express.static('images'));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-  app.use(bodyParser.urlencoded({extended: false}));
+  app.use(bodyParser.urlencoded({extended: true}));
   app.use(limiter);
   app.use(cookieParser());
   app.use(cors(corsOptions));
